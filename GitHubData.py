@@ -1,6 +1,13 @@
 import requests
 import os
-os.system("cls")
+import platform
+
+if platform.system() == "Windows":
+	os.system("cls")
+else:
+	os.system("clear")
+
+
 print('''
 
   ____ _ _   _   _       _       _   _                 ____        _
@@ -16,6 +23,7 @@ Website: https://quantumbyteofficial.tech/
 
 	''')
 username = input("Enter Github User Name: ")
+
 if username == "QuantumByteStudios":
 	print("\n\nBite the hand that feeds you... :( \n\n")
 
