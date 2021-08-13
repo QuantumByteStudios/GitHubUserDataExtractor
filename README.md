@@ -3,6 +3,7 @@ A Tool Which Gives Access To Some Information about any user on GitHub, directly
 
 <br>
 <img src="GitHubUserDataPreviewImg.png" alt="Preview">
+<img src="GitHubUserDataPreviewImgTermux.png" alt="Preview">
 <br>
 
 <h2>Linux Users!</h2><br>
