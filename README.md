@@ -2,6 +2,7 @@
 A Tool Which Gives Access To Some Information about any user on GitHub, directly on your Terminal Screen :)
 
 <br>
+<img src="warning.png" alt="Preview">
 <img src="GitHubUserDataPreviewImg.png" alt="Preview">
 <!--<img src="GitHubUserDataPreviewImgTermux.jpeg" alt="Preview">-->
 <br>
