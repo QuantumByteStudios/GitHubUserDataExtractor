@@ -1,0 +1,39 @@
+body{
+	font-family: sans-serif;
+	font-size: 25px;
+	color: white;
+	background-color: black;
+}
+.type{
+	color: red;
+	padding: none;
+	margin: none;
+}
+
+.login{
+	color: green;
+	padding: none;
+	margin: none;
+}
+
+.action{
+	color: #9900cc;
+	padding: none;
+	margin: none;
+}
+
+.html_url{
+	color: cyan;
+	padding: none;
+	margin: none;
+}
+.repo{
+	color: #cc00ff;
+	padding: none;
+	margin: none;
+}
+.name{
+	color: #29a329;
+	padding: none;
+	margin: none;
+}

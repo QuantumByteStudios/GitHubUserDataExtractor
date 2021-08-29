@@ -6,6 +6,8 @@ from colorama import Fore, Back, Style
 import socket
 import sys
 import geocoder
+import json
+
 g = geocoder.ip('me')
 
 location = g.latlng
@@ -82,4 +84,43 @@ else:
 	url = "\t"+"https://github-readme-streak-stats.herokuapp.com/?user="+username+"&"
 	print(f"{bcolors.OKBLUE + url + bcolors.ENDC}")
 	print("\n")
+
+	print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
+
+	eventsurl = "https://api.github.com/users/"+username+"/received_events"
+	print(f"{bcolors.OKCYAN}\tEVENTS GENERATED\n\n\t\tFrom: {eventsurl}\n\t\tAT: Data/ReceivedEvents/index.html{bcolors.ENDC}")
+	##################################################
+	os.remove("Data/ReceivedEvents/index.html")
+
+	r = requests.get(eventsurl)
+	r = r.text 
+
+	data = r.replace(",", "\n")
+	data2 = data.replace("{", " ")
+	data3 = data2.replace("}", " ")
+	data4 = data3.replace('"type"', '<p class="type">"TYPE"</p>')
+	data5 = data4.replace('"login"', '<p class="login">"LOGIN"</p>')
+	data6 = data5.replace('"display_login"', '<p class="login">"DISPLAY_LOGIN"</p>')
+	data7 = data6.replace('"action"', '<p class="action">"ACTION"</p>')
+	data8 = data7.replace('"html_url"', '<p class="html_url">"URL"</p>')
+	data9 = data8.replace('"repo"', '<p class="repo">"REPO"</p>')
+	data10 = data9.replace('"', ' ')
+	data11 = data10.replace('name', '<p class="name">NAME</p>')
+
+	# print(data4)
+
+	final = data11
+	f = open("Data/ReceivedEvents/index.html", "a")
+
+	stylesheet = '''
+		<head>
+    	<link rel="stylesheet" type="text/css" href="style.css">
+		</head>
+	'''
+	f.write(stylesheet)
+	f.write(final)
+	f.close()
+
+	os.system('start Data/ReceivedEvents/index.html')
+
 	garbage = input("Press any key to exit...")
