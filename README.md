@@ -3,7 +3,7 @@
 <img src="Data/Images/GitHubUserDataPreviewImg.png" alt="Preview">
 <img src="Data/Images/warning.png" alt="Preview">
 <!--<img src="GitHubUserDataPreviewImgTermux.jpeg" alt="Preview">-->
-<hr>
+<br>
 <h1>Update: You Will Now Get GitHub Feed!</h1>
 <b>Actual Feed of User: </b><br>
 <img src="Data/Images/GitHubUserDataFeedPreviewImg.png" alt="Preview">
