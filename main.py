@@ -31,9 +31,6 @@ if platform.system() == "Windows":
 else:
     os.system("clear")
 
-print("IP Address of your computer is : ", IP_Address)
-print("Your computer name is : ", pc_name)
-print("Your location is : ", location)
 
 
 introText = '''
@@ -53,7 +50,9 @@ sepText = "\n**************************************\n"
 print(f"{bcolors.OKGREEN + introText + bcolors.ENDC}")
 print(f"{bcolors.OKCYAN + developerText + bcolors.ENDC}")
 print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
-
+print("IP Address of your computer is : ", IP_Address)
+print("Your computer name is : ", pc_name)
+print("Your location is : ", location)
 # print(r)
 username = input("Enter Github User Name: ")
 print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
