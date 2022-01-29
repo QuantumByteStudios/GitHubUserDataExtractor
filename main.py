@@ -31,9 +31,9 @@ if platform.system() == "Windows":
 else:
     os.system("clear")
 
-# print("IP Address of your computer is : ", IP_Address)
-# print("Your computer name is : ", pc_name)
-# print("Your location is : ", location)
+print("IP Address of your computer is : ", IP_Address)
+print("Your computer name is : ", pc_name)
+print("Your location is : ", location)
 
 
 introText = '''
