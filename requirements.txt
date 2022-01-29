@@ -1,0 +1,5 @@
+colorama
+geocoder
+json
+requests
+socket
