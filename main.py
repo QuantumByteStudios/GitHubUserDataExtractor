@@ -53,7 +53,7 @@ print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
 print("IP Address of your computer is : ", IP_Address)
 print("Your computer name is : ", pc_name)
 print("Your location is : ", location)
-# print(r)
+print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
 username = input("Enter Github User Name: ")
 print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
 securityUrl = (
