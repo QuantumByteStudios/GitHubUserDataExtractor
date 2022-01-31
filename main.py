@@ -133,6 +133,6 @@ else:
     if platform.system() == "Windows":
         os.system('start Data/ReceivedEvents/index.html')
     else:
-        os.system("firefox Data/ReceivedEvents/index.html")
+        os.system("open Data/ReceivedEvents/index.html")
 
     garbage = input("Press any key to exit...")
