@@ -1,5 +1,11 @@
 # GitHubUserDataExtracter <!--<img src='https://raw.githubusercontent.com/Rajaniraiyn/GitHubUserDataExtracter/main/octocat.png' height=40>-->
-# A Tool Which Gives Access To Some Information about any user on GitHub, directly on your Terminal Screen :)
+A Tool Which Gives Access To Some Information about any user on GitHub, directly on your Terminal Screen :)
+
+What's New!
++ Added Fresh CSS
++ Added Contribution Graph
++ Added all Graphs and Stats to Received Events Page (Data/index.html)
+
 <img src="Data/Images/GitHubUserDataPreviewImg.png" alt="Preview">
 <img src="Data/Images/warning.png" alt="Preview">
 <!--<img src="GitHubUserDataPreviewImgTermux.jpeg" alt="Preview">-->
