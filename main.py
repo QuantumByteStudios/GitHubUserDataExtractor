@@ -1,3 +1,4 @@
+from pstats import Stats
 import requests
 import os
 import platform
@@ -80,17 +81,26 @@ else:
     print(f"{bcolors.WARNING + data3 + bcolors.ENDC}")
 
     username = username.lower()
+
+    print("\n\nNow Available in Received Events")
+
     print("\n Most Used Languages: ")
-    url = "\t"+"https://github-readme-stats.vercel.app/api/top-langs?username=" + \
+    mostUsedLanguages = "\t"+"https://github-readme-stats.vercel.app/api/top-langs?username=" + \
         username+"&show_icons=true&locale=en&layout=compact"
-    print(f"{bcolors.OKBLUE + url + bcolors.ENDC}")
+    print(f"{bcolors.OKBLUE + mostUsedLanguages + bcolors.ENDC}")
+
     print("\n GitHub Stats: ")
-    url = "\t"+"https://github-readme-stats.vercel.app/api?username=" + \
+    githubStats = "\t"+"https://github-readme-stats.vercel.app/api?username=" + \
         username+"&show_icons=true&locale=en"
-    print(f"{bcolors.OKBLUE + url + bcolors.ENDC}")
+    print(f"{bcolors.OKBLUE + githubStats + bcolors.ENDC}")
+
     print("\n Current Streak, Total Contributions, Longest Streak: ")
-    url = "\t"+"https://github-readme-streak-stats.herokuapp.com/?user="+username+"&"
-    print(f"{bcolors.OKBLUE + url + bcolors.ENDC}")
+    streakContributionsLS = "\t"+"https://github-readme-streak-stats.herokuapp.com/?user="+username+"&"
+    print(f"{bcolors.OKBLUE + streakContributionsLS + bcolors.ENDC}")
+
+    print("\n Contribution Graph: ")
+    contributionGraph = "\t"+"https://activity-graph.herokuapp.com/graph?username="+username+"&theme=github"
+    print(f"{bcolors.OKBLUE + contributionGraph + bcolors.ENDC}")
     print("\n")
 
     print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
@@ -108,8 +118,7 @@ else:
     data3 = data2.replace("}", " ")
     data4 = data3.replace('"type"', '<p class="type">"TYPE"</p>')
     data5 = data4.replace('"login"', '<p class="login">"LOGIN"</p>')
-    data6 = data5.replace(
-        '"display_login"', '<p class="login">"DISPLAY_LOGIN"</p>')
+    data6 = data5.replace('"display_login"', '<p class="login">"DISPLAY_LOGIN"</p>')
     data7 = data6.replace('"action"', '<p class="action">"ACTION"</p>')
     data8 = data7.replace('"html_url"', '<p class="html_url">"URL"</p>')
     data9 = data8.replace('"repo"', '<p class="repo">"REPO"</p>')
@@ -118,15 +127,27 @@ else:
 
     # print(data4)
 
+    userStats = f'''
+    <center>
+        <img src="{mostUsedLanguages}" alt="GitHubUserDataExtracter"><br>
+        <img src="{githubStats}" alt="GitHubUserDataExtracter">
+        <img src="{streakContributionsLS}" alt="GitHubUserDataExtracter"><br>
+        <img src="{contributionGraph}" alt="GitHubUserDataExtracter"><br>
+    </center>
+    <br>
+    '''
+
     final = data11
     f = open("Data/ReceivedEvents/index.html", "a")
 
     stylesheet = '''
 		<head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     	<link rel="stylesheet" type="text/css" href="style.css">
 		</head>
 	'''
     f.write(stylesheet)
+    f.write(userStats)
     f.write(final)
     f.close()
 
