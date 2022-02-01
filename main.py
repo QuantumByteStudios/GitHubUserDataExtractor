@@ -150,7 +150,7 @@ else:
                     </div>
                     <div class="col-10">
                         <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="fork">Forked: <a target="_blank" href="{forkedRepoUrl}">Visit Repository</a></p>
+                        <p class="fork">Forked a repository: <a target="_blank" href="{forkedRepoUrl}">Visit Repository</a></p>
                     </div>
                 </div>
             </div>
@@ -169,7 +169,7 @@ else:
                     </div>
                     <div class="col-10">
                         <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="watch-star">Watch/Starred: <a target="_blank" href="{repoName}">Visit Repository</a></p>
+                        <p class="watch-star">Watch/Starred a repository: <a target="_blank" href="{repoName}">Visit Repository</a></p>
                     </div>
                 </div>
             </div>
@@ -188,7 +188,7 @@ else:
                     </div>
                     <div class="col-10">
                         <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="create">Created: <a target="_blank" href="{userRepoUrl}">Visit Repository</a></p>
+                        <p class="create">Created a repository: <a target="_blank" href="{userRepoUrl}">Visit Repository</a></p>
                     </div>
                 </div>
             </div>
@@ -206,7 +206,7 @@ else:
                     </div>
                     <div class="col-10">
                         <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="publish">Published: <a target="_blank" href="{userRepoUrl}">Visit Repository</a></p>
+                        <p class="publish">Published a repository: <a target="_blank" href="{userRepoUrl}">Visit Repository</a></p>
                     </div>
                 </div>
             </div>
@@ -224,7 +224,7 @@ else:
                     </div>
                     <div class="col-10">
                         <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="release">Released: <a target="_blank" href="{userRepoUrl}">Visit Repository</a></p>
+                        <p class="release">Released a repository: <a target="_blank" href="{userRepoUrl}">Visit Repository</a></p>
                     </div>
                 </div>
             </div>
