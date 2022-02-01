@@ -8,7 +8,7 @@ A Tool Which Gives Access To Some Information about any user on GitHub, directly
 
 <br>
 
-BUILD - v3.64
+BUILD - v3.67
 What's New!
 + Added Fresh CSS
 + Clean RECEIVE EVENTS
@@ -31,6 +31,7 @@ What's New!
 <!--<img src="GitHubUserDataPreviewImgTermux.jpeg" alt="Preview">-->
 <br>
 <h1>Update: You Will Now Get GitHub Feed!</h1>
+# Note: Only Release, Create, Publish, Fork, Star/Watch Events are Visible
 <b>Actual Feed of User: </b><br>
 <p align="center">
     <img src="Data/Images/GitHubUserDataFeedPreviewImg.png" alt="Preview">
