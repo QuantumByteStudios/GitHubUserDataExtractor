@@ -24,7 +24,8 @@ What's New!
 # Runtime Screenshots
 
 <p align="center">
-    <img src="Data/Images/GitHubUserDataPreviewImg.png" alt="Preview">
+    <img src="Data/Images/GitHubUserDataPreviewImg0.png" alt="Preview">
+    <img src="Data/Images/GitHubUserDataPreviewImg1.png" alt="Preview">
 </p>
 <!-- <img src="Data/Images/warning.png" alt="Preview"> -->
 <!--<img src="GitHubUserDataPreviewImgTermux.jpeg" alt="Preview">-->
