@@ -43,7 +43,7 @@ introText = '''
 
 	'''
 developerText = '''
-Tip: Don't Type "Quantum Byte Sudios"\n\nCreated BY: @QuantumByteStudios\nWebsite: https://quantumbyteofficial.tech/
+Tip: Don't Type "Quantum Byte Studios"\n\nCreated BY: @QuantumByteStudios\nWebsite: https://quantumbyteofficial.tech/
 '''
 sepText = "\n**************************************\n"
 
