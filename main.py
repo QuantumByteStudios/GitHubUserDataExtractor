@@ -33,7 +33,6 @@ else:
     os.system("clear")
 
 
-
 introText = '''
   ____ _ _   _   _       _       _   _                 ____        _
  / ___(_) |_| | | |_   _| |__   | | | |___  ___ _ __  |  _ \  __ _| |_ __ _
@@ -62,7 +61,8 @@ securityUrl = (
 r = requests.get(securityUrl)
 username = username.lower()
 
-print(f"Fetching Data From API For User: {bcolors.FAIL + username + bcolors.ENDC}")
+print(
+    f"Fetching Data From API For User: {bcolors.FAIL + username + bcolors.ENDC}")
 if username == "quantumbytestudios":
     print(Fore.RED + '\n\n\tBite the hand that feeds you... :( \n\n')
 
@@ -95,11 +95,13 @@ else:
     print(f"{bcolors.OKBLUE + githubStats + bcolors.ENDC}")
 
     print("\n Current Streak, Total Contributions, Longest Streak: ")
-    streakContributionsLS = "\t"+"https://github-readme-streak-stats.herokuapp.com/?user="+username+"&"
+    streakContributionsLS = "\t" + \
+        "https://github-readme-streak-stats.herokuapp.com/?user="+username+"&"
     print(f"{bcolors.OKBLUE + streakContributionsLS + bcolors.ENDC}")
 
     print("\n Contribution Graph: ")
-    contributionGraph = "\t"+"https://activity-graph.herokuapp.com/graph?username="+username+"&theme=github"
+    contributionGraph = "\t" + \
+        "https://activity-graph.herokuapp.com/graph?username="+username+"&theme=github"
     print(f"{bcolors.OKBLUE + contributionGraph + bcolors.ENDC}")
     print("\n")
 
@@ -251,7 +253,6 @@ else:
     </div>
     '''
     f.write(userStats)
-
     f.close()
 
     if platform.system() == "Windows":
@@ -260,3 +261,6 @@ else:
         os.system("open Data/ReceivedEvents/index.html")
 
     garbage = input("Press any key to exit...")
+    # Clears History
+    f = open("Data/ReceivedEvents/index.html", "a")
+    f.truncate(0)
