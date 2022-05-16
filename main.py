@@ -105,6 +105,13 @@ else:
     print(f"{bcolors.OKBLUE + contributionGraph + bcolors.ENDC}")
     print("\n")
 
+    print("\n Contribution Graph (2): ")
+    secondContributionGraph = "\t" + \
+        "https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=" + \
+        username+"&theme=monokai"
+    print(f"{bcolors.OKBLUE + contributionGraph + bcolors.ENDC}")
+    print("\n")
+
     print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
 
     eventsurl = "https://api.github.com/users/"+username+"/received_events"
@@ -249,6 +256,7 @@ else:
             </div>
             &nbsp;
             <img src="{contributionGraph}" alt="GitHubUserDataExtracter"><br>
+            <img src="{secondContributionGraph}" alt="GitHubUserDataExtracter"><br>
         </div><br>
     </div>
     '''
