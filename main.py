@@ -109,7 +109,7 @@ else:
     secondContributionGraph = "\t" + \
         "https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=" + \
         username+"&theme=monokai"
-    print(f"{bcolors.OKBLUE + contributionGraph + bcolors.ENDC}")
+    print(f"{bcolors.OKBLUE + secondContributionGraph + bcolors.ENDC}")
     print("\n")
 
     print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
