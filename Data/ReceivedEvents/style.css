@@ -1,67 +1,122 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
 
-body{
-	font-family: Ubuntu;
-	font-size: 25px;
-	color: white;
-	background-color: #010409;
+body {
+  font-family: Ubuntu;
+  font-size: 18px;
+  color: white;
+  background-color: #010409;
 }
 
-.stats{
-	background-color: rgba(83, 83, 83, 0.479);
-	padding: 35px;
-	border-radius: 25px;
+p {
+  margin: 10px;
 }
 
-.profilePicture{
-	width: 100px;
-	height: 100px;
-	border-radius: 100px;
-	padding: 10px;
+.imgCustStyle {
+  width: 60vw;
 }
 
-.card{
-	background-color: #0d1117;
-	border-radius: 35px;
-	border: 2px solid #30363d;
-	margin: 20px;
-	margin-top: 20px;
+.stats {
+  background-color: rgba(83, 83, 83, 0.479);
+  padding: 35px;
+  border-radius: 25px;
 }
 
-a{
-	text-decoration: none;
-	color: rgb(255, 255, 255);
+.profilePicture {
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  padding: 10px;
 }
 
-
-
-.release{
-	color: green;
-	padding: none;
-	margin: none;
+.card {
+  background-color: #0d1117;
+  border-radius: 5px;
+  /* border: 2px solid #30363d; */
+  margin: 20px;
+  margin-top: 20px;
+  /* padding: 5px; */
 }
 
-.publish{
-	color: rgb(0, 162, 255);
-	padding: none;
-	margin: none;
+a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 }
 
-.watch-star{
-	color: rgb(221, 221, 0);
-	padding: none;
-	margin: none;
+.release {
+  color: green;
+  padding: none;
+  margin: none;
 }
 
-.create{
-	color: rgb(214, 0, 221);
-	padding: none;
-	margin: none;
+.publish {
+  color: rgb(0, 162, 255);
+  padding: none;
+  margin: none;
 }
 
-.fork{
-	color: rgb(214, 0, 0);
-	padding: none;
-	margin: none;
+.watch-star {
+  color: rgb(221, 221, 0);
+  padding: none;
+  margin: none;
 }
 
+.create {
+  color: rgb(214, 0, 221);
+  padding: none;
+  margin: none;
+}
+
+.fork {
+  color: rgb(214, 0, 0);
+  padding: none;
+  margin: none;
+}
+
+/* CSS */
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #fcfcfd;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(95, 61, 120, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395a;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
+}
+
+.button-30:focus {
+  box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(96, 75, 141, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(94, 69, 147, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #d6d6e7 0 3px 7px inset;
+  transform: translateY(2px);
+}
