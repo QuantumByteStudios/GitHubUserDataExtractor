@@ -1,4 +1,5 @@
 from pstats import Stats
+from xml.dom.minidom import Element
 import requests
 import os
 import platform
@@ -39,12 +40,9 @@ introText = '''
 | |  _| | __| |_| | | | | '_ \  | | | / __|/ _ \ '__| | | | |/ _` | __/ _` |
 | |_| | | |_|  _  | |_| | |_) | | |_| \__ \  __/ |    | |_| | (_| | || (_| |
  \____|_|\__|_| |_|\__,_|_.__/   \___/|___/\___|_|    |____/ \__,_|\__\__,_|
-
-	'''
-developerText = '''
-Tip: Don't Type "Quantum Byte Studios"\n\nCreated BY: @QuantumByteStudios\nWebsite: https://quantumbyteofficial.tech/
 '''
-sepText = "\n**************************************\n"
+developerText = '''Tip: Don't Type "Quantum Byte Studios"\n\nCreated BY: @QuantumByteStudios\nWebsite: https://quantumbyte.studio/'''
+sepText = "\n███████████████████████████████████████████████████████\n"
 
 
 print(f"{bcolors.OKGREEN + introText + bcolors.ENDC}")
@@ -61,13 +59,14 @@ securityUrl = (
 r = requests.get(securityUrl)
 username = username.lower()
 
-print(
-    f"Fetching Data From API For User: {bcolors.FAIL + username + bcolors.ENDC}")
 if username == "quantumbytestudios":
-    print(Fore.RED + '\n\n\tBite the hand that feeds you... :( \n\n')
-
+    print(Fore.RED + '\n\n\tBite the hand that feeds you... :( \n\n' + bcolors.ENDC)
+if username == "exit":
+    print(Fore.RED + 'Bye :P\n\n' + bcolors.ENDC)
+    exit()
 else:
-
+    print(
+        f"Fetching Data From API For User: {bcolors.FAIL + username + bcolors.ENDC}")
     url = "https://api.github.com/users/"+username
     r = requests.get(url)
     r = r.text
@@ -103,7 +102,6 @@ else:
     contributionGraph = "\t" + \
         "https://activity-graph.herokuapp.com/graph?username="+username+"&theme=github"
     print(f"{bcolors.OKBLUE + contributionGraph + bcolors.ENDC}")
-    print("\n")
 
     print("\n Contribution Graph (2): ")
     secondContributionGraph = "\t" + \
@@ -125,14 +123,24 @@ else:
     END = len(data)
     f = open("Data/ReceivedEvents/index.html", "a")
 
-    stylesheet = '''
+    stylesheet = f'''
 	<head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     	<link rel="stylesheet" type="text/css" href="style.css">
+        <title>GUDE: {username}</title>
+        <script src="main.js"></script>
 	</head>
     <center>
-        <a href="https://github.com/QuantumByteStudios"><h1>QuantumByteStudios</h1></a>
+        <br>
+        <a href="https://github.com/QuantumByteStudios/GitHubUserDataExtracter">
+            <h2>Github User Data Extractor</h2>
+        </a>
+        <hr>
+        <h3>Receive Events of <span style="color: red;">{username}</span></h3>
+        <button class="button-30" onclick="getPDF()">Convert To PDF and Download</button>
     </center>
+    <body>
+    <div id="cOntent">
     '''
     f.write(stylesheet)
 
@@ -143,6 +151,7 @@ else:
         LOGIN = data[i]["actor"]["login"]
         AVATAR = data[i]["actor"]["avatar_url"]
         EVENT = data[i]["type"]
+        REPO = data[i]["repo"]["name"]
         # print("ID: "+ID)
         # print("LOGIN: "+LOGIN)
         # print("AVATAR: "+AVATAR)
@@ -162,7 +171,7 @@ else:
                     </div>
                     <div class="col-10">
                         <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="fork">Forked a repository: <a target="_blank" href="{forkedRepoUrl}">Visit Repository</a></p>
+                        <p class="fork">Forked a repository: <a target="_blank" href="{forkedRepoUrl}">&nbsp;{REPO}</a></p>
                     </div>
                 </div>
             </div>
@@ -172,7 +181,7 @@ else:
         if("WatchEvent" in event):
             # print("ORIGINAL REPO NAME: "+data[i]["repo"]["name"])
             # print("USER'S ACTION: "+data[i]["payload"]["action"])
-            repoName = "https://github.com/"+data[i]["repo"]["name"]
+            staredRepoName = "https://github.com/"+data[i]["repo"]["name"]
             html = f'''
             <div class="card">
                 <div class="row">
@@ -181,7 +190,7 @@ else:
                     </div>
                     <div class="col-10">
                         <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="watch-star">Watch/Starred a repository: <a target="_blank" href="{repoName}">Visit Repository</a></p>
+                        <p class="watch-star">Watch/Starred a repository: <a target="_blank" href="{staredRepoName}">&nbsp;{REPO}</a></p>
                     </div>
                 </div>
             </div>
@@ -200,7 +209,7 @@ else:
                     </div>
                     <div class="col-10">
                         <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="create">Created a repository: <a target="_blank" href="{userRepoUrl}">Visit Repository</a></p>
+                        <p class="create">Created a repository: <a target="_blank" href="{userRepoUrl}">&nbsp;{REPO}</a></p>
                     </div>
                 </div>
             </div>
@@ -218,7 +227,7 @@ else:
                     </div>
                     <div class="col-10">
                         <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="publish">Published a repository: <a target="_blank" href="{userRepoUrl}">Visit Repository</a></p>
+                        <p class="publish">Published a repository: <a target="_blank" href="{userRepoUrl}">&nbsp;{REPO}</a></p>
                     </div>
                 </div>
             </div>
@@ -236,7 +245,7 @@ else:
                     </div>
                     <div class="col-10">
                         <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="release">Released a repository: <a target="_blank" href="{userRepoUrl}">Visit Repository</a></p>
+                        <p class="release">Released a repository: <a target="_blank" href="{userRepoUrl}">&nbsp;{REPO}</a></p>
                     </div>
                 </div>
             </div>
@@ -246,18 +255,32 @@ else:
     userStats = f'''
     <br>
     <div class="container stats">
-        <div class="row">
-            <div class="col-6">
-                <img src="{mostUsedLanguages}" alt="GitHubUserDataExtracter"><br>
+        <center>
+            <div class="row">
+                    <br>
+                    <div class="col-md-12">
+                        <img src="{mostUsedLanguages}" alt="GitHubUserDataExtracter">
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <img src="{githubStats}" alt="GitHubUserDataExtracter">
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <img src="{streakContributionsLS}" alt="GitHubUserDataExtracter"><br>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <img class="imgCustStyle" src="{contributionGraph}" alt="GitHubUserDataExtracter"><br>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <img class="imgCustStyle" src="{secondContributionGraph}" alt="GitHubUserDataExtracter"><br>
+                    </div>
+                    <br>
             </div>
-            <div class="col-6">
-                <img src="{githubStats}" alt="GitHubUserDataExtracter">
-                <img src="{streakContributionsLS}" alt="GitHubUserDataExtracter"><br>
-            </div>
-            &nbsp;
-            <img src="{contributionGraph}" alt="GitHubUserDataExtracter"><br>
-            <img src="{secondContributionGraph}" alt="GitHubUserDataExtracter"><br>
-        </div><br>
+            <br>
+        </center>
     </div>
     '''
     f.write(userStats)
