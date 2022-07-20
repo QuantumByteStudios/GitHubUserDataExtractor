@@ -38,7 +38,7 @@ What's New!
 <br>
 <h1>Update: You Will Now Get GitHub Feed!</h1>
 
-# Note: Only Release, Create, Publish, Fork, Star/Watch Events are Visible
+<h2> Note: Only Release, Create, Publish, Fork, Star/Watch Events are Visible</h2>
 
 <b>Actual Feed of User: </b><br>
 
