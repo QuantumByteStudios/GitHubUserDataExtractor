@@ -137,7 +137,7 @@ else:
         </a>
         <hr>
         <h3>Receive Events of <span style="color: red;">{username}</span></h3>
-        <button class="button-30" onclick="getPDF()">Convert To PDF and Download</button>
+        <button id="downloadButton" class="button-30" onclick="getPDF()">Convert To PDF and Download</button>
     </center>
     <body>
     <div id="cOntent">
@@ -268,8 +268,9 @@ else:
                     <br>
                     <div class="col-md-12">
                         <img src="{streakContributionsLS}" alt="GitHubUserDataExtracter"><br>
-                    </div>
-                    <br>
+                        <br><br>
+                    </div>                    
+                    <hr><br><br>
                     <div class="col-md-12">
                         <img class="imgCustStyle" src="{contributionGraph}" alt="GitHubUserDataExtracter"><br>
                     </div>
