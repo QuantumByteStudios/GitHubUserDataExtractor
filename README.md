@@ -1,7 +1,7 @@
 <p align="center">
     <img width="300px" height="300px" src="Data/Images/Logo.png" alt="Logo">
 </p>
-<h1 align="center">GitHubUserDataExtracter</h1>
+<h1 align="center">GitHubUserDataExtractor</h1>
 <p align="center">A Tool Which Gives Access To Some Information about any user on GitHub, directly on your Terminal Screen :)</p>
 
 &nbsp;
