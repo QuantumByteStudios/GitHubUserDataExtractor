@@ -8,7 +8,7 @@
 
 <h2>Linux Users!</h2>
     
-    git clone https://github.com/QuantumByteStudios/GitHubUserDataExtracter.git
+    git clone https://github.com/QuantumByteStudios/GitHubUserDataExtractor.git
 
 <br>
 
