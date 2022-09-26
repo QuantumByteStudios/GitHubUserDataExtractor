@@ -290,7 +290,7 @@ else:
     if platform.system() == "Windows":
         os.system('start Data/ReceivedEvents/index.html')
     else:
-        os.system("open Data/ReceivedEvents/index.html")
+        os.system("open Data/ReceivedEvents/index.html 2>/dev/null")
 
     garbage = input("Press any key to exit...")
     # Clears History
