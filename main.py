@@ -48,10 +48,10 @@ sepText = "\n██████████████████████�
 print(f"{bcolors.OKGREEN + introText + bcolors.ENDC}")
 print(f"{bcolors.OKCYAN + developerText + bcolors.ENDC}")
 print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
-print("IP Address of your computer is : ", IP_Address)
-print("Your computer name is : ", pc_name)
-print("Your location is : ", location)
-print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
+# print("IP Address of your computer is : ", IP_Address)
+# print("Your computer name is : ", pc_name)
+# print("Your location is : ", location)
+# print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
 username = input("Enter Github User Name: ")
 print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
 securityUrl = (
@@ -290,11 +290,12 @@ else:
     f.close()
 
     if platform.system() == "Windows":
-        os.system('start Data/ReceivedEvents/index.html')
+        os.system('start Data/ReceivedEvents/boot.html')
     else:
-        os.system("open Data/ReceivedEvents/index.html 2>/dev/null")
+        os.system("open Data/ReceivedEvents/boot.html 2>/dev/null")
 
     garbage = input("Press any key to exit...")
     # Clears History
     f = open("Data/ReceivedEvents/index.html", "a")
     f.truncate(0)
+    f.close()

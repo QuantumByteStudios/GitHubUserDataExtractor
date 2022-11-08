@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="300px" height="300px" src="Data/Images/Logo.png" alt="Logo">
+    <img width="200px" height="200px" src="Data/Images/Logo.png" alt="Logo">
 </p>
 <h1 align="center">GitHubUserDataExtractor</h1>
 <p align="center">A Tool Which Gives Access To Some Information about any user on GitHub, directly on your Terminal Screen :)</p>
@@ -9,6 +9,15 @@
 <h2>Linux Users!</h2>
     
     git clone https://github.com/QuantumByteStudios/GitHubUserDataExtractor.git --depth=1
+
+<br>
+
+BUILD - v5.98
+What's New!
+
+- New Style
+- Clean RECEIVE EVENTS in a separate pop-up window
+- Removed Old Builds
 
 <br>
 
