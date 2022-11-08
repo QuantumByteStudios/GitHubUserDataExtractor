@@ -77,11 +77,11 @@ else:
     data2 = data1.replace("{", "")
     data3 = data2.replace("}", "")
 
-    print(f"{bcolors.WARNING + data3 + bcolors.ENDC}")
+    print(f"\n{bcolors.WARNING + data3 + bcolors.ENDC}")
 
     username = username.lower()
 
-    print("\n\nNow Available in Received Events")
+    print(f"{bcolors.OKGREEN} \n\nNow Available in Received Events {bcolors.ENDC}")
 
     print("\n Most Used Languages: ")
     mostUsedLanguages = "\t"+"https://github-readme-stats.vercel.app/api/top-langs?username=" + \
