@@ -129,6 +129,8 @@ else:
     	<link rel="stylesheet" type="text/css" href="style.css">
         <title>GUDE: {username}</title>
         <script src="main.js"></script>
+          <!-- Fav Icons -->
+          <link rel="icon" href="https://quantumbyte.studio/Mobile/src/icon/favicon.png" type="image/x-icon">
 	</head>
     <center>
         <br>
