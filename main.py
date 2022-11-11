@@ -123,7 +123,7 @@ else:
     data = json.loads(r.text)
     START = 0
     END = len(data)
-    f = open("Data/ReceivedEvents/index.html", "a")
+    f = open("Data/ReceivedEvents/index.html", "a", encoding="utf_8")
 
     stylesheet = f'''
 	<head>
@@ -298,6 +298,6 @@ else:
 
     garbage = input("Press any key to exit...")
     # Clears History
-    f = open("Data/ReceivedEvents/index.html", "a")
+    f = open("Data/ReceivedEvents/index.html", "a", encoding="utf_8")
     f.truncate(0)
     f.close()
