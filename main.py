@@ -1,14 +1,16 @@
-from pstats import Stats
-from xml.dom.minidom import Element
-import requests
+import json
 import os
 import platform
-import colorama
-from colorama import Fore, Back, Style
 import socket
+import subprocess
 import sys
+from pstats import Stats
+from xml.dom.minidom import Element
+
+import colorama
 import geocoder
-import json
+import requests
+from colorama import Back, Fore, Style
 
 g = geocoder.ip('me')
 
@@ -29,9 +31,9 @@ class bcolors:
 
 
 if platform.system() == "Windows":
-    os.system("cls")
+    subprocess.run("cls", shell=True)
 else:
-    os.system("clear")
+    subprocess.run("clear", shell=True)
 
 
 introText = '''
@@ -290,9 +292,9 @@ else:
     f.close()
 
     if platform.system() == "Windows":
-        os.system('start Data/ReceivedEvents/boot.html')
+        subprocess.run('start Data/ReceivedEvents/boot.html', shell=True)
     else:
-        os.system("open Data/ReceivedEvents/boot.html 2>/dev/null")
+        subprocess.run('open Data/ReceivedEvents/boot.html 2>/dev/null', shell=True)
 
     garbage = input("Press any key to exit...")
     # Clears History
