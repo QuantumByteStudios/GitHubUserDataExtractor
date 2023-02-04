@@ -259,24 +259,24 @@ else:
             <div class="row">
                     <br>
                     <div class="col-md-12">
-                        <img src="{mostUsedLanguages}" alt="GitHubUserDataExtracter">
+                        <img src="{mostUsedLanguages}" alt="GitHubUserDataExtractor">
                     </div>
                     <br>
                     <div class="col-md-12">
-                        <img src="{githubStats}" alt="GitHubUserDataExtracter">
+                        <img src="{githubStats}" alt="GitHubUserDataExtractor">
                     </div>
                     <br>
                     <div class="col-md-12">
-                        <img src="{streakContributionsLS}" alt="GitHubUserDataExtracter"><br>
+                        <img src="{streakContributionsLS}" alt="GitHubUserDataExtractor"><br>
                         <br><br>
                     </div>                    
                     <hr><br><br>
                     <div class="col-md-12">
-                        <img class="imgCustStyle" src="{contributionGraph}" alt="GitHubUserDataExtracter"><br>
+                        <img class="imgCustStyle" src="{contributionGraph}" alt="GitHubUserDataExtractor"><br>
                     </div>
                     <br>
                     <div class="col-md-12">
-                        <img class="imgCustStyle" src="{secondContributionGraph}" alt="GitHubUserDataExtracter"><br>
+                        <img class="imgCustStyle" src="{secondContributionGraph}" alt="GitHubUserDataExtractor"><br>
                     </div>
                     <br>
             </div>
