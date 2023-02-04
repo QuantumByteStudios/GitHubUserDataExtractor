@@ -3,14 +3,9 @@ import os
 import platform
 import socket
 import subprocess
-import sys
-from pstats import Stats
-from xml.dom.minidom import Element
-
-import colorama
 import geocoder
 import requests
-from colorama import Back, Fore, Style
+from colorama import Fore
 
 g = geocoder.ip('me')
 
@@ -102,7 +97,8 @@ else:
 
     print("\n Contribution Graph: ")
     contributionGraph = "\t" + \
-        "https://activity-graph.herokuapp.com/graph?username="+username+"&theme=github"
+        "https://github-readme-activity-graph.cyclic.app/graph?username=" + \
+        username+"&theme=github"
     print(f"{bcolors.OKBLUE + contributionGraph + bcolors.ENDC}")
 
     print("\n Contribution Graph (2): ")
@@ -294,7 +290,8 @@ else:
     if platform.system() == "Windows":
         subprocess.run('start Data/ReceivedEvents/boot.html', shell=True)
     else:
-        subprocess.run('open Data/ReceivedEvents/boot.html 2>/dev/null', shell=True)
+        subprocess.run(
+            'open Data/ReceivedEvents/boot.html 2>/dev/null', shell=True)
 
     garbage = input("Press any key to exit...")
     # Clears History
