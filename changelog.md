@@ -1,5 +1,12 @@
 <br>
 
+v7.109
+What's New!
+
+- Bugs Fixed & Improvements
+
+<br>
+
 v6.106
 What's New!
 

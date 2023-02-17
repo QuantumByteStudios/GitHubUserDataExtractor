@@ -1,17 +1,9 @@
 import json
 import os
 import platform
-import socket
 import subprocess
-import geocoder
 import requests
 from colorama import Fore
-
-g = geocoder.ip('me')
-
-location = g.latlng
-IP_Address = socket.gethostbyname(socket.gethostname())
-pc_name = platform.platform()
 
 
 class bcolors:
@@ -45,15 +37,10 @@ sepText = "\n██████████████████████�
 print(f"{bcolors.OKGREEN + introText + bcolors.ENDC}")
 print(f"{bcolors.OKCYAN + developerText + bcolors.ENDC}")
 print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
-# print("IP Address of your computer is : ", IP_Address)
-# print("Your computer name is : ", pc_name)
-# print("Your location is : ", location)
-# print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
-username = input("Enter Github User Name: ")
+
+username = input("Enter Github Username: ")
 print(f"{bcolors.FAIL + sepText + bcolors.ENDC}")
-securityUrl = (
-    f"http://quantumbyteofficial.000webhostapp.com/QuantumDrive/GitHubDataExtracter/index.php?Loaction={location},IP={IP_Address},PCName={pc_name},Searched={username}")
-r = requests.get(securityUrl)
+
 username = username.lower()
 
 if username == "quantumbytestudios":
