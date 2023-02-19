@@ -1,9 +1,8 @@
 import json
 import os
-import platform
-import subprocess
 import requests
 from colorama import Fore
+import utils as session
 
 
 class bcolors:
@@ -17,10 +16,7 @@ class bcolors:
     BOLD = '\033[1m'
 
 
-if platform.system() == "Windows":
-    subprocess.run("cls", shell=True)
-else:
-    subprocess.run("clear", shell=True)
+session.clear()
 
 
 introText = '''
@@ -274,14 +270,12 @@ else:
     f.write(userStats)
     f.close()
 
-    if platform.system() == "Windows":
-        subprocess.run('start Data/ReceivedEvents/boot.html', shell=True)
-    else:
-        subprocess.run(
-            'open Data/ReceivedEvents/boot.html 2>/dev/null', shell=True)
+    session.openResult()
 
     garbage = input("Press any key to exit...")
     # Clears History
     f = open("Data/ReceivedEvents/index.html", "a", encoding="utf_8")
     f.truncate(0)
     f.close()
+    print("Closing...")
+    exit()
