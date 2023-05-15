@@ -141,7 +141,7 @@ else:
         # print("EVENT: "+EVENT)
         event = data[i]["type"]
 
-        if("ForkEvent" in event):
+        if ("ForkEvent" in event):
             # print("ORIGINAL REPO NAME: "+data[i]["repo"]["name"])
             # print("USER'S REPO NAME: "+data[i]["payload"]["forkee"]["full_name"])
             # print("USER'S REPO URL: "+data[i]["payload"]["forkee"]["html_url"])
@@ -161,7 +161,7 @@ else:
             '''
             f.write(html)
 
-        if("WatchEvent" in event):
+        if ("WatchEvent" in event):
             # print("ORIGINAL REPO NAME: "+data[i]["repo"]["name"])
             # print("USER'S ACTION: "+data[i]["payload"]["action"])
             staredRepoName = "https://github.com/"+data[i]["repo"]["name"]
@@ -180,7 +180,7 @@ else:
             '''
             f.write(html)
 
-        if("CreateEvent" in event):
+        if ("CreateEvent" in event):
             userRepoUrl = "https://github.com/"+data[i]["repo"]["name"]
             # print("ORIGINAL REPO NAME: "+data[i]["repo"]["name"])
             # print("USER'S REPO URL: "+userRepoUrl)
@@ -199,7 +199,7 @@ else:
             '''
             f.write(html)
 
-        if("PublicEvent" in event):
+        if ("PublicEvent" in event):
             userRepoUrl = "https://github.com/"+data[i]["repo"]["name"]
             # print("PUBLISHED REPO URL: "+userRepoUrl)
             html = f'''
@@ -217,7 +217,7 @@ else:
             '''
             f.write(html)
 
-        if("ReleaseEvent" in event):
+        if ("ReleaseEvent" in event):
             userRepoUrl = data[i]["payload"]["release"]["html_url"]
             # print("RELEASED REPO URL: "+userRepoUrl)
             html = f'''
