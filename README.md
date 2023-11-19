@@ -7,11 +7,13 @@ A Tool Which Gives Access To Some Information about any user on GitHub, directly
 For information on all the most recent upgrades and changes, read this <a href="changelog.md">changelog</a>.
 </p>
 
-&nbsp;
+> (⁠ ⁠ꈍ⁠ᴗ⁠ꈍ⁠)
+> 
+>        git clone https://github.com/QuantumByteStudios/GitHubUserDataExtractor.git --depth=1
 
-<h2>Linux Users!</h2>
-    
-    git clone https://github.com/QuantumByteStudios/GitHubUserDataExtractor.git --depth=1
+> [!IMPORTANT]
+> - You can now view the GitHub feed!
+> - Only Release, Create, Publish, Fork, and Star/Watch Events are Visible
 
 # Runtime Screenshots
 
@@ -21,10 +23,6 @@ For information on all the most recent upgrades and changes, read this <a href="
 <!-- <img src="Data/Images/warning.png" alt="Preview"> -->
 <!--<img src="GitHubUserDataPreviewImgTermux.jpeg" alt="Preview">-->
 <br>
-
-# Update: You Now Have Access to the GitHub Feed!
-
-<p align='center'> Note: Only Release, Create, Publish, Fork, Star/Watch Events are Visible</p>
 
 <b>Actual Feed of User: </b><br>
 
