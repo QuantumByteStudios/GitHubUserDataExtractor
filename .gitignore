@@ -1,3 +1,4 @@
 Data/ReceivedEvents/index.html
-./vscode/
+.vscode/
 __pycache__
+test/
