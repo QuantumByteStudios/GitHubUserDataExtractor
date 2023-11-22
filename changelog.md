@@ -1,5 +1,15 @@
 <br>
 
+v8.118
+What's New!
+
+- Added an HTML Viewer for Received Events
+- Updated user interface (updated screenshots)
+- Optimized entire source code
+- Bugs Fixed & Improvements
+
+<br>
+
 v7.109
 What's New!
 
