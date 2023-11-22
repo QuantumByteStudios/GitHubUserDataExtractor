@@ -2,3 +2,4 @@ colorama==0.4.6
 PyQt5==5.15.10
 PyQt5_sip==12.12.2
 Requests==2.31.0
+webview==0.1.5
