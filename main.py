@@ -27,9 +27,9 @@ username = username.lower()
 urls = {
     "mostUsedLanguages" : "\t" + "https://github-readme-stats.vercel.app/api/top-langs?username=" + username + "&langs_count=8",
     "githubStats" : "\t" + "https://github-readme-stats.vercel.app/api?username=" + username + "&show_icons=true&locale=en",
-    "streakContributionsLS" : "\t" + "https://github-readme-streak-stats.heruapp.com/?user=" + username + "&",
+    "streakContributionsLS" : "\t" + "https://streak-stats.demolab.com/?user=" + username + "&",
     "contributorGraphOne" : "\t" + "https://github-readme-activity-graph.vercel.app/graph?username=" + username + "&bg_color=000000&color=ffffff&line=ffffff&point=ffffff&area=true&hide_border=true",
-    "contributorGraphTwo" : "\t" + "https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=" + username+"&theme=monai", 
+    "contributorGraphTwo" : "\t" + "https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=" + username+ "&theme=dark", 
 }
 
 def get_user_data(username):

@@ -279,5 +279,5 @@ def createAndDisplayHTMLUserEvents(username, urls):
         </center>
     </div>
     '''
-    # f.write(userStats)
+    f.write(userStats)
     f.close()
