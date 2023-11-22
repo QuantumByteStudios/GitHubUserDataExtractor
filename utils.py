@@ -7,9 +7,7 @@ import tkinter as tk
 from tkinter import ttk
 from colorama import Fore
 from tkinter import messagebox
-from PyQt5.QtCore import QUrl
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget, QVBoxLayout, QWidget
-from PyQt5.QtWebEngineWidgets import QWebEngineView
+
 
 # Colors
 class colors:
@@ -22,37 +20,6 @@ class colors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
 
-# HTML Viewer
-class HTMLViewer(QMainWindow):
-    def __init__(self):
-        super().__init__()
-
-        self.setWindowTitle("GitHubUserDataExtractor - HTML Viewer")
-
-        # Local path to HTML file
-        self.html_path = os.path.abspath("Data/ReceivedEvents/index.html")
-
-        # WebEngineView to display HTML content
-        self.webview = QWebEngineView()
-        self.webview.setUrl(QUrl.fromLocalFile(self.html_path))
-
-        layout = QVBoxLayout()
-        layout.addWidget(self.webview)
-
-        # Main widget
-        central_widget = QWidget()
-        central_widget.setLayout(layout)
-        self.setCentralWidget(central_widget)
-
-        # Set screen dimensions and center the window
-        self.setFixedSize(900, 800)
-        self.center_on_screen()
-
-    def center_on_screen(self):
-        frame_geometry = self.frameGeometry()
-        center_point = QDesktopWidget().availableGeometry().center()
-        frame_geometry.moveCenter(center_point)
-        self.move(frame_geometry.topLeft())
 
 # Clear Screen
 def clear():
@@ -60,18 +27,6 @@ def clear():
         subprocess.run("cls", shell=True)  # nosec B602, B607
     else:
         subprocess.run("clear", shell=True)  # nosec B602, B607
-
-# Open Result
-def openResult():
-    app = QApplication([])
-    browser = HTMLViewer()
-    browser.show()
-    app.exec_()
-    # Old Logic
-    # if platform.system() == "Windows":
-    #     subprocess.run('start Data/ReceivedEvents/boot.html', shell=True)  # nosec B602, B607
-    # else:
-    #     subprocess.run('open Data/ReceivedEvents/boot.html 2>/dev/null', shell=True)  # nosec B602, B607
 
 
 # Fetch and Print Data form API
@@ -81,6 +36,7 @@ def fetchAndPrintData(username):
     r = requests.get(url).text
     data = r.replace("\"", " ").replace("}", " ").replace(",", "\n").replace("\"", " ").replace("{", "").replace("}", "")
     print(f"\n{colors.WARNING + data + colors.ENDC}")
+
 
 # Show Events and Graphs
 def showEventsAndGraphs(urls):
@@ -107,6 +63,7 @@ def showEventsAndGraphs(urls):
     
     # End
     # print("\n\n")
+
 
 # HTML Received Events File
 def createAndDisplayHTMLUserEvents(username, urls):

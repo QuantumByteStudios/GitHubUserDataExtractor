@@ -1,4 +1,5 @@
 import utils as session
+import platform
 from utils import colors
 
 # Clear Screen
@@ -44,7 +45,12 @@ def get_user_data(username):
         # Create HTML File User's Received Events
         session.createAndDisplayHTMLUserEvents(username, urls)
         # Open Generated HTML File
-        session.openResult()
+        if platform.system() == "Linux":
+            import HTMLViewer_Linux
+            HTMLViewer_Linux.showHTMLLinux()
+        else:
+            import HTMLViewer_Windows
+            HTMLViewer_Windows.showHTMLWindows()
         # Exit
         garbage = input("Press any key to exit...")
         # Clears History

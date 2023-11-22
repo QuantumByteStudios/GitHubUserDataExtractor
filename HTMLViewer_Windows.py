@@ -34,7 +34,8 @@ class HTMLViewer(QMainWindow):
         frame_geometry.moveCenter(center_point)
         self.move(frame_geometry.topLeft())
 
-if __name__ == "__main__":
+
+def showHTMLWindows():
     app = QApplication([])
     browser = HTMLViewer()
     browser.show()
