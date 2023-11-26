@@ -12,8 +12,8 @@ For information on all the most recent upgrades and changes, read this <a href="
 >        git clone https://github.com/QuantumByteStudios/GitHubUserDataExtractor.git --depth=1
 
 > [!IMPORTANT]
-> - You can now view the GitHub feed!
-> - Only Release, Create, Publish, Fork, and Star/Watch Events are Visible
+> - GitHub feed viewing is now supported!
+> - The only visible events are Release, Create, Publish, Fork, and Star/Watch events.
 
 # Runtime Screenshots
 
@@ -24,13 +24,13 @@ For information on all the most recent upgrades and changes, read this <a href="
 <!--<img src="GitHubUserDataPreviewImgTermux.jpeg" alt="Preview">-->
 <br>
 
-<b>Actual Feed of User: </b><br>
+<b>Actual user feed: </b><br>
 
 <p align="center">
     <img src="Data/Images/GitHubUserDataFeedPreviewImg.png" alt="Preview">
 </p>
 
-<b>Here's How You Will Get To See: </b><br>
+<b>This is how you will see it: </b><br>
 
 <p align="center">
     <img src="Data/Images/GitHubUserDataFeedRawPreviewImg.png" alt="Preview">
