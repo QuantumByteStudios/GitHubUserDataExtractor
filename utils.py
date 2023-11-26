@@ -31,7 +31,7 @@ def clear():
 
 # Fetch and Print Data form API
 def fetchAndPrintData(username):
-    print(f"Fetching Data From API For User: {colors.FAIL + username + colors.ENDC}")
+    print(f"Fetching data from API for user: {colors.FAIL + username + colors.ENDC}")
     url = "https://api.github.com/users/"+username
     r = requests.get(url).text
     data = r.replace("\"", " ").replace("}", " ").replace(",", "\n").replace("\"", " ").replace("{", "").replace("}", "")
@@ -81,24 +81,23 @@ def createAndDisplayHTMLUserEvents(username, urls):
     f = open("Data/ReceivedEvents/index.html", "a", encoding="utf_8")
     stylesheet = f'''
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <title>GitHubUserDataExtractor - Output</title>
+        <link rel="icon" href="https://quantumbytestudios.in/src/images/ClassicWhiteVeryBig.png" type="image/x-icon">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="style.css">
-        <title>GUDE: {username}</title>
         <script src="main.js"></script>
-        <!-- Fav Icons -->
-        <link rel="icon" href="https://quantumbyte.studio/Mobile/src/icon/favicon.png" type="image/x-icon">
     </head>
-    <center>
-        <br>
-        <a href="https://github.com/QuantumByteStudios/GitHubUserDataExtracter">
-            <h2>Github User Data Extractor</h2>
+    <br>
+    <div class="d-flex align-items-center m-2">
+        <a class="badge program-title" href="https://github.com/QuantumByteStudios/GitHubUserDataExtracter">
+            <h2 class="m-0 p-2">GithubUserDataExtractor</h2>
         </a>
-        <hr>
-        <h3>Receive Events of <span style="color: red;">{username}</span></h3>
-        <!-- <button id="downloadButton" class="button-30" onclick="getPDF()">Convert To PDF and Download</button> -->
-    </center>
-    <body>
-    <div id="cOntent">
+        <h5 class="m-0 p-2">Target <span class="badge bg-danger">{username}</span></h5>
+    </div>
+    <hr>
+
+    <body class="container-lg p-lg-5">
+    <div class="w-100">
     '''
     f.write(stylesheet)
     for i in range(START, END):
@@ -120,14 +119,19 @@ def createAndDisplayHTMLUserEvents(username, urls):
             # print("USER'S REPO URL: "+data[i]["payload"]["forkee"]["html_url"])
             forkedRepoUrl = data[i]["payload"]["forkee"]["html_url"]
             html = f'''
-            <div class="card">
-                <div class="row">
-                    <div class="col-2">
-                        <img src="{AVATAR}" class="img-fluid profilePicture" alt="ProfilePicture">
-                    </div>
-                    <div class="col-10">
-                        <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="fork">Forked a repository: <a target="_blank" href="{forkedRepoUrl}">&nbsp;{REPO}</a></p>
+            <div class="row m-3 p-0 bg-normal">
+                <div class="col-12 d-flex justify-content-left align-items-center">
+                    <img src="{AVATAR}" class="img-fluid profile-picture">
+                    <a href="https://github.com/{LOGIN}">
+                        <p class="badge bg-primary">{LOGIN}</p>
+                    </a>
+                    <div class="badge bg-danger text-white bg-content">
+                        <p>
+                            Forked a repository
+                            <a class="repo-link" target="_blank" href="{forkedRepoUrl}">
+                                {REPO}
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -136,34 +140,44 @@ def createAndDisplayHTMLUserEvents(username, urls):
         if ("WatchEvent" in event):
             # print("ORIGINAL REPO NAME: "+data[i]["repo"]["name"])
             # print("USER'S ACTION: "+data[i]["payload"]["action"])
-            staredRepoName = "https://github.com/"+data[i]["repo"]["name"]
+            staredRepoURL = "https://github.com/"+data[i]["repo"]["name"]
             html = f'''
-            <div class="card">
-                <div class="row">
-                    <div class="col-2">
-                        <img src="{AVATAR}" class="img-fluid profilePicture" alt="ProfilePicture">
-                    </div>
-                    <div class="col-10">
-                        <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="watch-star">Watch/Starred a repository: <a target="_blank" href="{staredRepoName}">&nbsp{REPO}</a></p>
+            <div class="row m-3 p-0 bg-normal">
+                <div class="col-12 d-flex justify-content-left align-items-center">
+                    <img src="{AVATAR}" class="img-fluid profile-picture">
+                    <a href="https://github.com/{LOGIN}">
+                        <p class="badge bg-primary">{LOGIN}</p>
+                    </a>
+                    <div class="badge bg-warning text-dark bg-content">
+                        <p>
+                            Watch/Starred a repository
+                            <a class="repo-link" target="_blank" href="{staredRepoURL}">
+                               {REPO}
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
             '''
             f.write(html)
         if ("CreateEvent" in event):
-            userRepoUrl = "https://github.com/"+data[i]["repo"]["name"]
+            userRepoURL = "https://github.com/"+data[i]["repo"]["name"]
             # print("ORIGINAL REPO NAME: "+data[i]["repo"]["name"])
             # print("USER'S REPO URL: "+userRepoUrl)
             html = f'''
-            <div class="card">
-                <div class="row">
-                    <div class="col-2">
-                        <img src="{AVATAR}" class="img-fluid profilePicture" alt="ProfilePicture">
-                    </div>
-                    <div class="col-10">
-                        <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="create">Created a repository: <a target="_blank" href="{userRepoUrl}">&nbsp;{REPO}</a></p>
+            <div class="row m-3 p-0 bg-normal">
+                <div class="col-12 d-flex justify-content-left align-items-center">
+                    <img src="{AVATAR}" class="img-fluid profile-picture">
+                    <a href="https://github.com/{LOGIN}">
+                        <p class="badge bg-primary">{LOGIN}</p>
+                    </a>
+                    <div class="badge bg-success text-white bg-content">
+                        <p>
+                            Created a repository
+                            <a class="repo-link" target="_blank" href="{userRepoURL}">
+                                {REPO}
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -173,14 +187,19 @@ def createAndDisplayHTMLUserEvents(username, urls):
             userRepoUrl = "https://github.com/"+data[i]["repo"]["name"]
             # print("PUBLISHED REPO URL: "+userRepoUrl)
             html = f'''
-            <div class="card">
-                <div class="row">
-                    <div class="col-2">
-                        <img src="{AVATAR}" class="img-fluid profilePicture" alt="ProfilePicture">
-                    </div>
-                    <div class="col-10">
-                        <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="publish">Published a repository: <a target="_blank" href="{userRepoUrl}">&nbsp;{REPO}</a><p>
+            <div class="row m-3 p-0 bg-normal">
+                <div class="col-12 d-flex justify-content-left align-items-center">
+                    <img src="{AVATAR}" class="img-fluid profile-picture">
+                    <a href="https://github.com/{LOGIN}">
+                        <p class="badge bg-primary">{LOGIN}</p>
+                    </a>
+                    <div class="badge bg-primary text-white bg-content">
+                        <p>
+                            Published a repository
+                            <a class="repo-link" target="_blank" href="{userRepoUrl}">
+                                {REPO}
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -190,14 +209,19 @@ def createAndDisplayHTMLUserEvents(username, urls):
             userRepoUrl = data[i]["payload"]["release"]["html_url"]
             # print("RELEASED REPO URL: "+userRepoUrl)
             html = f'''
-            <div class="card">
-                <div class="row">
-                    <div class="col-2">
-                        <img src="{AVATAR}" class="img-fluid profilePicture" alt="ProfilePicture">
-                    </div>
-                    <div class="col-10">
-                        <a href="https://github.com/{LOGIN}"><p>{LOGIN}</p></a>
-                        <p class="release">Released a repository: <a target="_blank" href="{userRepoUrl}">&nbsp;{REPO}</a></p>
+            <div class="row m-3 p-0 bg-normal">
+                <div class="col-12 d-flex justify-content-left align-items-center">
+                    <img src="{AVATAR}" class="img-fluid profile-picture">
+                    <a href="https://github.com/{LOGIN}">
+                        <p class="badge bg-primary">{LOGIN}</p>
+                    </a>
+                    <div class="badge bg-primary text-white bg-content">
+                        <p>
+                            Released a repository
+                            <a class="repo-link" target="_blank" href="{userRepoUrl}">
+                                {REPO}
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -205,36 +229,29 @@ def createAndDisplayHTMLUserEvents(username, urls):
             f.write(html)
 
     userStats = f'''
-    <br>
-    <div class="container stats">
-        <center>
-            <div class="row">
-                <br>
-                <div class="col-md-12">
-                    <img src="{urls["mostUsedLanguages"]}" alt="GitHubUserDataExtractor">
+        <br>
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <img class="img-fluid" src="{urls["mostUsedLanguages"]}">
                 </div>
-                <br>
-                <div class="col-md-12">
-                    <img src="{urls["githubStats"]}" alt="GitHubUserDataExtractor">
+                <div class="col-12 col-md-6">
+                    <center>
+                        <img class="img-fluid w-100" src="{urls["githubStats"]}">
+                        <img class="img-fluid w-100" src="{urls["streakContributionsLS"]}">
+                    </center>
                 </div>
-                <br>
-                <div class="col-md-12">
-                    <img src="{urls["streakContributionsLS"]}" alt="GitHubUserDataExtractor"><br>
-                    <br><br>
-                </div>                    
-                <hr><br><br>
-                <div class="col-md-12">
-                    <img class="imgCustStyle" src="{urls["contributorGraphOne"]}" alt="GitHubUserDataExtractor"><br>
-                </div>
-                <br>
-                <div class="col-md-12">
-                    <img class="imgCustStyle" src="{urls["contributorGraphTwo"]}" alt="GitHubUserDataExtractor"><br>
-                </div>
-                <br>
             </div>
-            <br>
-        </center>
-    </div>
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-12 d-flex justify-content-center">
+                    <img class="img-fluid" src="{urls["contributorGraphOne"]}">
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <img class="img-fluid" src="{urls["contributorGraphTwo"]}">
+                </div>
+            </div>
+        </div>
+    </body>
     '''
     f.write(userStats)
     f.close()

@@ -19,7 +19,7 @@ print(devInformation)
 print("\n")
 
 # Get Username
-username = input(f"Enter Github Username: {colors.WARNING}")
+username = input(f"Enter a Github Username: {colors.WARNING}")
 print(f"{colors.ENDC}")
 
 # Convert Username to Lowercase
