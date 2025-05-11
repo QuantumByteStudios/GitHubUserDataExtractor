@@ -45,17 +45,20 @@ Runtime Screenshot
 ```
 GitHubUserDataExtractor/
 │
-├── src/
-│   ├── cli/                   # Terminal input/output logic
-│   ├── core/                  # API and HTML generation logic
-│   └── ui/htmlviewers/        # Platform-specific GUI viewers
+├── .temp/                     # Temporary files (auto-cleaned)
+├── .vscode/                   # VS Code workspace settings
+├── src/                       # Source code directory
+|   ├── main.py                # Main.py
+│   ├── core/                  # API and utility logic
+│   │   └── utils.py           # Helper functions for API and data processing
+│   ├── htmlviewers/           # Platform-specific GUI viewers
+│   │   ├── linux.py           # HTML viewer for Linux (PyWebView)
+│   │   └── windows.py         # HTML viewer for Windows (PyQt5)
 │
-├── assets/
-│   └── templates/             # HTML/CSS/JS templates
-│
-├── tests/                     # Unit tests
-├── requirements.txt
-├── README.md
+├── .gitignore                 # Git ignore rules
+├── LICENSE.md                 # License information
+├── README.md                  # Project documentation
+├── requirements.txt           # Python dependencies
 ```
 
 ## Output
