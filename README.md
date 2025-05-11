@@ -39,6 +39,9 @@ You will be prompted to enter a GitHub username. The tool will:
 4. Clean up temporary files after closing the viewer.
 
 Runtime Screenshot
+![0](https://github.com/user-attachments/assets/83208bff-8061-4e5a-b03e-ea7192265cba)
+![1](https://github.com/user-attachments/assets/67d03132-982a-48d9-8dbc-9a365462f3d4)
+
 
 ## Project Structure
 
