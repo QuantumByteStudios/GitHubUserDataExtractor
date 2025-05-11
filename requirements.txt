@@ -1,4 +1,5 @@
-colorama==0.4.4
-PyQt5==5.15.10
+colorama==0.4.6
+PyQt5==5.15.11
+PyQt5_sip==12.15.0
 Requests==2.32.3
 webview==0.1.5
