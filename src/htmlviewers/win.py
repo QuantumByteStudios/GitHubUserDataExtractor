@@ -24,6 +24,9 @@ class HTMLViewer(QMainWindow):
         # Layout to hold the web view
         layout = QVBoxLayout()
         layout.addWidget(self.webview)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
+        layout.setStretch(0, 1)
 
         # Main widget setup
         central_widget = QWidget()
@@ -31,7 +34,7 @@ class HTMLViewer(QMainWindow):
         self.setCentralWidget(central_widget)
 
         # Adjust window properties
-        self.resize(900, 800)  # Make window resizable
+        self.resize(1000, 800)  # Make window resizable
         self.center_on_screen()
 
     def center_on_screen(self):
@@ -47,7 +50,7 @@ def showHTMLWindow():
     app = QApplication(sys.argv)
 
     # Absolute path to the HTML file
-    html_file_path = os.path.abspath("Data/ReceivedEvents/index.html")
+    html_file_path = os.path.abspath(".temp/index.html")
 
     # Create and display the browser window
     browser = HTMLViewer(html_file_path)
@@ -55,3 +58,11 @@ def showHTMLWindow():
 
     # Execute the application and ensure proper exit
     sys.exit(app.exec_())
+
+    # Delete the HTML file after closing the viewer
+    try:
+        os.remove(html_file_path)
+    except FileNotFoundError:
+        print(f"Warning: HTML file '{html_file_path}' not found to delete.")
+    except Exception as e:
+        print(f"Error deleting HTML file: {e}")

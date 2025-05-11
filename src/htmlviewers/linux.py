@@ -1,4 +1,4 @@
-import webview
+import webview  # type: ignore
 import os
 import sys
 

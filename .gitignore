@@ -1,5 +1,4 @@
-Data/ReceivedEvents/index.html
-Data/ReceivedEvents/sample.html
-.vscode/
-__pycache__
-test/
+__pycache__/
+.vscode
+received_events/
+*.html
