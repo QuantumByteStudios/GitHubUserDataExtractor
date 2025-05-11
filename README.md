@@ -66,7 +66,7 @@ GitHubUserDataExtractor/
 
 ## Output
 
-The tool creates a temporary HTML report (`index.html`) inside the `assets/output/` directory. This report includes:
+The tool creates a temporary HTML report (`index.html`) inside the `.temp/` directory. This report includes:
 
 - Recent GitHub events (filtered by event types)
 - Contribution graphs and language usage charts
