@@ -1,11 +1,15 @@
+"""Shared helpers for fetching GitHub data and rendering the HTML report."""
+import base64
 import os
 import platform
 import requests
 from colorama import Fore, Style
-from requests.exceptions import HTTPError
+from requests.exceptions import HTTPError, RequestException
 
 
-class colors:
+class colors:  # pylint: disable=invalid-name,too-few-public-methods  # noqa: D203,D211
+    """ANSI color constants used for terminal output."""
+
     HEADER = Fore.MAGENTA
     BLUE = Fore.BLUE
     CYAN = Fore.CYAN
@@ -18,14 +22,43 @@ class colors:
 
 
 def clear():
-    os.system("cls" if platform.system() == "Windows" else "clear")
+    """Clear the terminal screen without spawning a shell."""
+    if platform.system() == "Windows":
+        print("\033[2J\033[H", end="")
+    else:
+        print("\033c", end="")
+
+
+def get_auth_headers():
+    """Return the Authorization header dict if a GitHub token is set."""
+    token = os.environ.get("GITHUB_TOKEN", "").strip()
+    if token:
+        return {"Authorization": f"Bearer {token}"}
+    return {}
+
+
+def fetch_as_data_uri(url):  # noqa: D212,D213
+    """Fetch a remote image and return it as a base64 data URI.
+
+    Embeds the image directly in the HTML file (needed when the page is served
+    via file:// and WebKit would otherwise block external requests).
+    """
+    try:
+        resp = requests.get(url, timeout=15)
+        resp.raise_for_status()
+        content_type = resp.headers.get("Content-Type", "image/svg+xml").split(";")[0].strip()
+        encoded = base64.b64encode(resp.content).decode("ascii")
+        return f"data:{content_type};base64,{encoded}"
+    except (RequestException, ValueError, TypeError):
+        return url  # fall back to original URL on any failure
 
 
 def fetch_and_print_data(username):
+    """Fetch the GitHub user profile and print each field to the terminal."""
     print(f"Fetching data for user: {colors.FAIL}{username}{colors.ENDC}")
     url = f"https://api.github.com/users/{username}"
     try:
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, headers=get_auth_headers(), timeout=10)
         response.raise_for_status()
         data = response.json()
         print(f"\n{colors.WARNING}User Data:{colors.ENDC}")
@@ -35,17 +68,20 @@ def fetch_and_print_data(username):
 
     except HTTPError as http_err:
         print(f"{colors.FAIL}HTTP error occurred: {http_err}{colors.ENDC}")
-    except Exception as err:
+    except (RequestException, ValueError) as err:
         print(f"{colors.FAIL}Unexpected error: {err}{colors.ENDC}")
 
 
-def show_events_and_graphs(urls):
+def show_events_and_graphs():
+    """Print a confirmation that graphs are available in the report."""
     print(
         f"\nGraphs available in Received Events [{colors.GREEN}✓{colors.ENDC}]"
     )
 
 
-def generate_html_event_row(avatar, login, event_type, repo_name, repo_url, badge_class, action_text):
+def generate_html_event_row(  # pylint: disable=too-many-arguments,too-many-positional-arguments
+    avatar, login, repo_name, repo_url, badge_class, action_text):
+    """Return the HTML markup for a single received-event row."""
     return f"""
     <div class="event-row d-flex align-items-center shadow-sm">
         <img src="{avatar}" class="profile-picture me-3" alt="Avatar of {login}">
@@ -57,46 +93,7 @@ def generate_html_event_row(avatar, login, event_type, repo_name, repo_url, badg
     </div>"""
 
 
-def create_and_display_html_user_events(username, urls):
-    events_url = f"https://api.github.com/users/{username}/received_events"
-    html_path = ".temp/index.html"
-
-    print(f"Generating HTML report... [{colors.GREEN}✓{colors.ENDC}]\n")
-
-    url = f"https://api.github.com/users/{username}"
-    try:
-        response = requests.get(url, timeout=10)
-        response.raise_for_status()
-        user_data = response.json()
-
-        login = user_data.get("login", "")
-        name = user_data.get("name", "")
-        location = user_data.get("location", "")
-        html_url = user_data.get("html_url", "")
-        avatar_url = user_data.get("avatar_url", "")
-        bio = user_data.get("bio", "")
-        followers = user_data.get("followers", 0)
-        following = user_data.get("following", 0)
-
-    except HTTPError as http_err:
-        print(f"{colors.FAIL}HTTP error occurred: {http_err}{colors.ENDC}")
-        return
-    except Exception as err:
-        print(f"{colors.FAIL}Unexpected error: {err}{colors.ENDC}")
-        return
-
-    os.makedirs(os.path.dirname(html_path), exist_ok=True)
-    if os.path.exists(html_path):
-        os.remove(html_path)
-
-    try:
-        response = requests.get(events_url, timeout=10)
-        response.raise_for_status()
-        events = response.json()
-
-        with open(html_path, "w", encoding="utf_8") as f:
-            f.write(f"""
-<!DOCTYPE html>
+HTML_REPORT_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -207,71 +204,147 @@ def create_and_display_html_user_events(username, urls):
                     Username: {login} <br>
                     About: {bio} <br>
                     Followers: {followers}, Following: {following} <br>
-                    Location: {location} 
+                    Location: {location}
                 </p>
                 <a href="{html_url}" class="btn btn-light" target="_blank">View Profile</a>
             </div>
         </div>
     </div>
     <div class="col-sm-12 col-md-8 col-lg-8">
-    <h4 class="mb-4">Received Events</h4>""")
-
-            for event in events:
-                event_type = event.get("type")
-                actor = event.get("actor", {})
-                payload = event.get("payload", {})
-                repo = event.get("repo", {})
-                login = actor.get("login", "")
-                avatar = actor.get("avatar_url", "")
-                repo_name = repo.get("name", "")
-                repo_url = f"https://github.com/{repo_name}"
-
-                badge_class = ""
-                action_text = ""
-
-                if event_type == "ForkEvent":
-                    badge_class = "text-danger"
-                    action_text = "Forked a repository"
-                    repo_url = payload.get("forkee", {}).get("html_url", "#")
-
-                elif event_type == "WatchEvent":
-                    badge_class = "text-warning"
-                    action_text = "Watch/Starred a repository"
-
-                elif event_type == "CreateEvent":
-                    badge_class = "text-success"
-                    action_text = "Created a repository"
-
-                elif event_type == "PublicEvent":
-                    badge_class = "text-primary"
-                    action_text = "Published a repository"
-
-                elif event_type == "ReleaseEvent":
-                    badge_class = "text-primary"
-                    action_text = "Released a repository"
-                    repo_url = payload.get("release", {}).get("html_url", "#")
-
-                if action_text:  # Only write if action_text is set
-                    f.write(generate_html_event_row(
-                        avatar, login, event_type, repo_name,
-                        repo_url, badge_class, action_text))
-
-            f.write(f"""</div>
+    <h4 class="mb-4">Received Events</h4>
+{events_html}
+</div>
     <div class="col-sm-12 col-md-4 col-lg-4">
         <h4 class="mb-4">Contribution Insights</h4>
         <div class="row justify-content-center align-items-left graph-container">
             <div class="col-12">
-                <img class="img-fluid w-100" src="{urls['mostUsedLanguages']}" alt="Top Languages">
-                <img class="img-fluid w-100" src="{urls['githubStats']}" alt="GitHub Stats">
-                <img class="img-fluid w-100" src="{urls['streakContributionsLS']}" alt="Streak Stats">
+                <img class="img-fluid w-100" src="{langs_src}" alt="Top Languages">
+                <img class="img-fluid w-100" src="{stats_src}" alt="GitHub Stats">
+                <img class="img-fluid w-100" src="{streak_src}" alt="Streak Stats">
             </div>
         </div>
     </div>
     </div>
 </body>
 </html>
-""")
+"""
+
+
+EVENT_ACTIONS = {
+    "WatchEvent": ("text-warning", "Watch/Starred a repository", None),
+    "CreateEvent": ("text-success", "Created a repository", None),
+    "PublicEvent": ("text-primary", "Published a repository", None),
+    "ForkEvent": ("text-danger", "Forked a repository", "forkee"),
+    "ReleaseEvent": ("text-primary", "Released a repository", "release"),
+}
+
+
+def _resolve_event_action(event_type, payload, repo_url):
+    """Return badge/action text and final URL for a GitHub event."""
+    action = EVENT_ACTIONS.get(event_type)
+    if not action:
+        return "", "", repo_url
+
+    badge_class, action_text, payload_key = action
+    if payload_key:
+        repo_url = payload.get(payload_key, {}).get("html_url", "#")
+
+    return badge_class, action_text, repo_url
+
+
+def _build_events_html(events):
+    """Return HTML rows for supported received event types."""
+    rows = []
+    for event in events:
+        event_type = event.get("type")
+        actor = event.get("actor", {})
+        payload = event.get("payload", {})
+        repo = event.get("repo", {})
+        login = actor.get("login", "")
+        avatar = actor.get("avatar_url", "")
+        repo_name = repo.get("name", "")
+        repo_url = f"https://github.com/{repo_name}"
+        badge_class, action_text, repo_url = _resolve_event_action(event_type, payload, repo_url)
+        if not action_text:
+            continue
+        rows.append(generate_html_event_row(
+            avatar,
+            login,
+            repo_name,
+            repo_url,
+            badge_class,
+            action_text,
+        ))
+    return "".join(rows)
+
+
+def _build_report_html(user_data, events_html, urls):
+    """Render the final HTML report document as a single string."""
+    return HTML_REPORT_TEMPLATE.format(
+        login=user_data.get("login", ""),
+        name=user_data.get("name", ""),
+        location=user_data.get("location", ""),
+        html_url=user_data.get("html_url", ""),
+        avatar_url=user_data.get("avatar_url", ""),
+        bio=user_data.get("bio", ""),
+        followers=user_data.get("followers", 0),
+        following=user_data.get("following", 0),
+        events_html=events_html,
+        langs_src=fetch_as_data_uri(urls["mostUsedLanguages"]),
+        stats_src=fetch_as_data_uri(urls["githubStats"]),
+        streak_src=fetch_as_data_uri(urls["streakContributionsLS"]),
+    )
+
+
+def _fetch_json(url):
+    """Fetch JSON from a URL and return parsed data, or None on failure."""
+    try:
+        response = requests.get(url, headers=get_auth_headers(), timeout=10)
+        response.raise_for_status()
+        return response.json()
     except HTTPError as http_err:
         print(f"{colors.FAIL}HTTP error occurred: {http_err}{colors.ENDC}")
-    except Exception as err:
+    except (RequestException, ValueError) as err:
         print(f"{colors.FAIL}Unexpected error: {err}{colors.ENDC}")
+    return None
+
+
+def _prepare_output_path(html_path):
+    """Create output directory and remove any existing report file."""
+    os.makedirs(os.path.dirname(html_path), exist_ok=True)
+    if os.path.exists(html_path):
+        os.remove(html_path)
+
+
+def _write_report_file(html_path, report_html):
+    """Write report HTML to disk, returning True on success."""
+    try:
+        with open(html_path, "w", encoding="utf_8") as file_obj:
+            file_obj.write(report_html)
+        return True
+    except OSError as err:
+        print(f"{colors.FAIL}Unexpected error: {err}{colors.ENDC}")
+    return False
+
+
+def create_and_display_html_user_events(username, urls):
+    """Build the user's HTML report from profile data and received events."""
+    user_url = f"https://api.github.com/users/{username}"
+    events_url = f"{user_url}/received_events"
+    html_path = ".temp/index.html"
+
+    print(f"Generating HTML report... [{colors.GREEN}✓{colors.ENDC}]\n")
+
+    user_data = _fetch_json(user_url)
+    if user_data is None:
+        return
+
+    events = _fetch_json(events_url)
+    if events is None:
+        return
+
+    _prepare_output_path(html_path)
+
+    events_html = _build_events_html(events)
+    report_html = _build_report_html(user_data, events_html, urls)
+    _write_report_file(html_path, report_html)

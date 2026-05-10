@@ -2,3 +2,9 @@ __pycache__/
 .vscode
 received_events/
 *.html
+src/.github_token
+.codacy/
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md

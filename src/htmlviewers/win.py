@@ -1,12 +1,18 @@
+"""Windows HTML viewer backed by PyQt5 QWebEngineView."""
 import sys
 import os
 from PyQt5.QtCore import QUrl
-from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QMessageBox, QDesktopWidget
+from PyQt5.QtWidgets import (
+    QApplication, QMainWindow, QVBoxLayout, QWidget, QMessageBox, QDesktopWidget
+)
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 
 
-class HTMLViewer(QMainWindow):
+class HTMLViewer(QMainWindow):  # pylint: disable=too-few-public-methods  # noqa: D203,D211
+    """Main window that renders the generated HTML report."""
+
     def __init__(self, html_path):
+        """Initialize the viewer window for the given HTML file path."""
         super().__init__()
         self.setWindowTitle("GitHubUserDataExtractor - HTML Viewer")
 
@@ -45,8 +51,8 @@ class HTMLViewer(QMainWindow):
         self.move(frame_geometry.topLeft())
 
 
-def showHTMLWindow():
-    """Launches the PyQt5 application to display the HTML content."""
+def show_html_window():
+    """Launch the PyQt5 application and display the HTML content."""
     app = QApplication(sys.argv)
 
     # Absolute path to the HTML file
@@ -56,13 +62,16 @@ def showHTMLWindow():
     browser = HTMLViewer(html_file_path)
     browser.show()
 
-    # Execute the application and ensure proper exit
-    sys.exit(app.exec_())
+    # Execute the application and capture the exit code so cleanup can run.
+    exit_code = app.exec_()
 
     # Delete the HTML file after closing the viewer
     try:
         os.remove(html_file_path)
     except FileNotFoundError:
         print(f"Warning: HTML file '{html_file_path}' not found to delete.")
-    except Exception as e:
+    except OSError as e:
         print(f"Error deleting HTML file: {e}")
+
+    # Exit with the same code returned by Qt.
+    sys.exit(exit_code)
